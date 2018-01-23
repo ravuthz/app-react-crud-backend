@@ -6,7 +6,16 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const post = new Schema({
-    text: { type: String, required: true }
+    title : {
+      type: String,
+      required: [true, 'Title is required']
+    },
+    content : {
+      type: String,
+      required: [true, 'Content is required']
+    },
+    createdAt: { type: Date, 'default': Date.now },
+    updatedAt: { type: Date, 'default': Date.now }
   }, {
     timestamps: true
   });
