@@ -14,7 +14,18 @@ module.exports = {
 
   after: {
     all: [ logger() ],
-    find: [],
+    find: [
+      (context) => {
+        
+        context.result.pager = {
+          skip: context.result.skip,
+          limit: context.result.limit,
+          total: context.result.total
+        };
+        console.log("after find context: ", context.result.pager);
+        
+      }
+    ],
     get: [],
     create: [],
     update: [],
